@@ -64,18 +64,19 @@ describe('some test', () => {
     it('should return to angular main page', function () {
         /*
         --------------------------the first way to solve this task--------------------------
-
-        let brandButton = element(by.css('.brand'));
-        brandButton.click();
-        expect(browser.getCurrentUrl()).toEqual('https://angularjs.org/');
-        */
-
         let container = element(by.css('.container'));
         let brandButton = container.element(by.tagName('h1'));
         let brandButtonLink = brandButton.element(by.tagName('a'));
 
-        brandButtonLink.click();
+        */
+        let brandButton = element(by.css('.brand'));
+        brandButton.click();
 
-        expect(browser.getCurrentUrl()).toEqual('https://angularjs.org/');
+        browser.pause();
+        let rowExample = element(by.css('.well.ng-scope[module="todoApp"]'));
+        let ngScope = rowExample.element(by.css('div.ng-scope'));
+        let checkBox = ngScope.all(by.css('input[type="checkbox"]')).first();
+
+        expect(checkBox.getAttribute('checked')).toBeTruthy();
     });
 });
